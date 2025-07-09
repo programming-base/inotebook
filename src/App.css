@@ -1,5 +1,16 @@
 @import "tailwindcss" ;
 #root {
-  max-width: 1280px;
   margin: 0 auto;
 }
+::-webkit-scrollbar{
+  overscroll-behavior: none;
+  width:0px;
+}
+button{
+  cursor: pointer;
+}
+/* Styling for Header */
+/* header{
+  left:25vw;
+  width: calc(100vw - 25vw);
+} */
