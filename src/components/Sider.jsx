@@ -1,19 +1,6 @@
 import { NotebookPen,EyeOff,FileLock2,FolderGit2 } from "lucide-react";
 import {Link} from 'react-router-dom';
 export default function Sider() {
-   let fetchnotes=async ()=>{
-      const notefetch=await fetch("http://localhost:3000/notes/savednotes/686aa0481e75e0800b1ca8c8",{
-        method:"GET",
-        headers:{
-          'Content-Type':"application/json",
-          'auth-token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJnYXV0YW0iLCJlbWFpbCI6ImdhdXRhbUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImdhdXRhbTEyMyIsIl9pZCI6IjY4Njk2MmE1M2JmMGU5Zjg0MjgwYjlmMiIsImRhdGUiOiIyMDI1LTA3LTA1VDE3OjM2OjM3LjQ3NFoiLCJfX3YiOjB9LCJpYXQiOjE3NTE3MzY5OTd9.iDDNv1Uvr5DP9OPVBSemm5ZXpnwDs9HZc3DMf948yQE",
-        }
-      })
-      const notejson=await notefetch.json();
-      console.log(notejson);
-    }
-  fetchnotes();
-
   return (
     <>
       <div
@@ -26,19 +13,15 @@ export default function Sider() {
               Notes
             </h1> */}
             <div className="flex flex-col">
-              <Link to='/newnote'><button className="text-start ml-3 h-10 text-[.75rem] text-gray-500 font-semibold">
+              <Link to='/newnote'><button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
                 <NotebookPen className="inline mr-2"/>
                 Compose Note
               </button></Link>
-              <Link to='/notemanagement'><button className="text-start ml-3 h-10 text-[.75rem] text-gray-500 font-semibold">
-                <FolderGit2 className="inline mr-2"/>
-                Manage Notes
-              </button></Link>
-              <Link to='/privatenote'><button className="text-start ml-3 h-10 text-[.75rem] text-gray-500 font-semibold">
+              <Link to='/privatenote'><button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
                 <EyeOff className="inline mr-2"/>
                 Private Notes
               </button></Link>
-              <Link to='/notesecurity'><button className="text-start ml-3 h-10 text-[.75rem] text-gray-500 font-semibold">
+              <Link to='/notesecurity'><button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
                 <FileLock2 className="inline mr-2"/>
                 Secure Note
               </button></Link>

@@ -1,7 +1,6 @@
 import { HomeIcon,Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
 function NavBar() {
-  // Function to toggle mobile menu visibility
   const ontogglemenu = () => {
     document.getElementById("mobile-menu").classList.toggle("hidden");
   };
@@ -12,19 +11,19 @@ function NavBar() {
         <div className="flex items-center justify-between h-16 ">
           {/* Branding */}
           <div className="flex items-center space-x-2 mr-6 ">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-500 text-transparent bg-position-[-1rem] bg-clip-text mr-4 w-[20vw] ">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-500 text-transparent bg-position-[-1rem] bg-clip-text  w-[20vw] ">
               iNotebook
             </div>
             <div className="flex items-center h-fit max-md:hidden ">
               <Link
                 to="/"
-                className="text-gray-700 font-medium hover:text-blue-600 transition mr-6"
+                className="text-gray-700 font-medium hover:text-blue-600 hover:bg-gray-200 p-1 px-2 hover:scale-110 rounded-[.5rem] transition mr-3"
               >
                < HomeIcon/>
               </Link>
               <Link
                 to="/Mynotes"
-                className="text-gray-700 font-medium hover:text-blue-600 transition w-fit"
+                className="text-gray-700 font-medium hover:text-blue-600 hover:bg-gray-200 p-1 px-2 hover:scale-110 rounded-[.5rem] transition w-fit"
               >
                 My Notes
               </Link>

@@ -1,14 +1,13 @@
 import NavBar from "../components/NavBar";
-import Notes from "../components/Notes";
 import Sider from "../components/Sider";
-import Wellcomepage from "../components/welcomepage";
+import MainBody from "../components/MainBody";
 import { createBrowserRouter } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
-        <NavBar /> <Sider /> <Wellcomepage />{" "}
+        <NavBar /> <Sider /> <MainBody />
       </>
     ),
   },
@@ -16,8 +15,7 @@ const router = createBrowserRouter([
     path: "/newnote",
     element: (
       <>
-         <NavBar /> <Sider />
-        <div className="text-black">hello i am new Note</div>
+         <NavBar /> <Sider /> <MainBody/>
       </>
     ),
   },
@@ -25,7 +23,7 @@ const router = createBrowserRouter([
     path:'/privatenote',
     element: (
       <>
-         <NavBar /> <Sider />
+         <NavBar /> <Sider /><MainBody/>
         <div className="text-black">hello i am private Note</div>
       </>
     ),
@@ -33,20 +31,13 @@ const router = createBrowserRouter([
   {
     path:'/notesecurity',
     element:<>
-         <NavBar /> <Sider />
+         <NavBar /> <Sider /><MainBody/>
         <div className="text-black">hello i am securing your Note</div>
       </>
   },
   {
-    path:'/notemanagement',
-    element:<>
-       <NavBar /> <Sider />
-        <div className="text-black">hello i am managing your Note</div>
-      </>
-  },
-  {
     path:'/Mynotes',
-    element:<><NavBar/> <Sider/> <Wellcomepage/></>
+    element:<><NavBar/> <Sider/> <MainBody/></>
   }
 ]);
 export default router;
