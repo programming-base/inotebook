@@ -31,14 +31,15 @@ function NavBar() {
           </div>
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition shadow">
+            <Link to='/login'><button type="button" className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition shadow">
               Login
             </button>
-            <button className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition shadow ">
+            </Link>
+            <Link to='/signup'> <button type="button" className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition shadow ">
               Sign Up
             </button>
+            </Link>
           </div>
-
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button

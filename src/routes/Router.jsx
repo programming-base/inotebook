@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import Sider from "../components/Sider";
 import MainBody from "../components/MainBody";
 import { createBrowserRouter } from "react-router-dom";
+import LoginSignup from "../components/Loginsignup";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
   {
     path:'/Mynotes',
     element:<><NavBar/> <Sider/> <MainBody/></>
+  },
+   {
+    path:'/home',
+    element:<><NavBar/> <Sider/> <MainBody/></>
+  },
+    {
+    path:'/login',
+    element:<><LoginSignup/></>
   }
 ]);
 export default router;

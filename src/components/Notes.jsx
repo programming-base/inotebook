@@ -25,7 +25,7 @@ function Notes() {
       }
     }
     notefetch();
-  }, [note]);
+  },[]);
   if (note.length > 0) {
     return (
       <main className="w-full h-full">
