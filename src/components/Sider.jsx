@@ -1,4 +1,5 @@
-import { NotebookPen,EyeOff,FileLock2,FolderGit2 } from "lucide-react";
+import React from "react";
+import { NotebookPen,EyeOff,FileLock2 } from "lucide-react";
 import {Link} from 'react-router-dom';
 export default function Sider() {
   return (

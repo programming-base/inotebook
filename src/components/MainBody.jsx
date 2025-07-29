@@ -1,3 +1,4 @@
+import React from "react";
 import { useLocation,Link } from "react-router-dom";
 import Notes from "./Notes";
 import { NotebookPen, Pencil } from "lucide-react";

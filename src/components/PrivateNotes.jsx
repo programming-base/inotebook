@@ -1,9 +1,7 @@
-import { Trash2, LockKeyhole, SquarePen, Star } from "lucide-react";
+import React from "react";
 import { useState, useEffect } from "react";
-
 function PrivateNotes() {
     const [privateNotes, setPrivateNotes] = useState([]);
-
     useEffect(() => {
       async function fetchPrivateNotes() {
         try {
@@ -18,7 +16,7 @@ function PrivateNotes() {
             }
           );
           const data = await response.json();
-          setPrivateNotes(data); // assuming `data` is an array
+          setPrivateNotes(data);
         } catch (error) {
           console.error("Error fetching private notes:", error);
         }

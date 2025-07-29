@@ -1,13 +1,20 @@
-import { HomeIcon,Pencil } from "lucide-react";
+import React from "react";
+import { HomeIcon } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext} from "../contexts/authContext";
 function NavBar() {
-  const ontogglemenu = () => {
+  const {user,status}=useContext(AuthContext);
+  const ontogglemenu=()=>{
     document.getElementById("mobile-menu").classList.toggle("hidden");
-  };
+  }
+  const onlogin=()=>{
+    if(status) return {display:"none"}
+  }
   return (
     <>
     <header className="bg-white border-b-[1px]  border-gray-200 fixed w-full top-0 left-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-5">
+      <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-5">
         <div className="flex items-center justify-between h-16 ">
           {/* Branding */}
           <div className="flex items-center space-x-2 mr-6 ">
@@ -30,8 +37,8 @@ function NavBar() {
             </div>
           </div>
           {/* Desktop Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to='/login'><button type="button" className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition shadow">
+          <div className="hidden md:flex items-center space-x-4" style={onlogin()}>
+            <Link to='/login' ><button onClick={()=>{window.location.href="http://localhost:3000/auth/login"}} type="button" className="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition shadow">
               Login
             </button>
             </Link>
@@ -63,7 +70,7 @@ function NavBar() {
         <a href="#" className="block py-2 text-gray-700 hover:text-blue-600">
           My Notes
         </a>
-        <div className="mt-3 space-y-2">
+        <div className="mt-3 space-y-2" style={onlogin()}>
           <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
             Login
           </button>
@@ -76,4 +83,5 @@ function NavBar() {
     </>
   );
 }
+
 export default NavBar;

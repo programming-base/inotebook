@@ -1,3 +1,4 @@
+import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import {Link} from "react-router-dom"
@@ -5,7 +6,7 @@ export default function LoginSignup() {
   return (
     <>
       <header className="bg-white border-b-[1px]  border-gray-200 fixed w-full top-0 left-0 z-50">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-5">
+        <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-5">
           <div className="flex items-center justify-between h-16 ">
             {/* Branding */}
             <div className="flex items-center space-x-2 mr-6 ">
@@ -38,12 +39,13 @@ export default function LoginSignup() {
             <Link to="/reset password" className="text-blue-500 p-1">Forgot password?</Link>
             </div>
           </form>
-          <div className="mt-5 w-[80%] flex justify-center items-center overflow-none text-gray-500 ">
+          <div>Already have an account?<a href="http://localhost:3000/login" className="text-blue-600">Signup</a></div>
+          <div className="mt-3 w-[80%] flex justify-center items-center overflow-none text-gray-500 ">
             <span className="border-t border-gray-400 w-[50%]"></span>OR{" "}
             <span className="border-t border-gray-400 w-[50%]"></span>
           </div>
           <div className=" w-[80%] h-fit contain-content">
-            <button className="w-full  flex justify-center items-center bg-white mt-4 h-[3rem] border  border-gray-400 rounded-[8px] active:scale-95 transition-all duration-300">
+            <button onClick={()=>{window.location.href='http://localhost:3000/login'}} className="w-full  flex justify-center items-center bg-white mt-4 h-[3rem] border  border-gray-400 rounded-[8px] active:scale-95 transition-all duration-300">
               <span className="flex">
                 <FcGoogle size={24} className="mx-2" />
                 Google

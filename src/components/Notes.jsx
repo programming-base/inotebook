@@ -1,20 +1,23 @@
+import React from "react";
 import { Trash2, LockKeyhole, SquarePen, Star } from "lucide-react";
-
+import { useContext } from "react";
+import { AuthContext } from "../contexts/authContext";
 import { useState } from "react";
 import { useEffect } from "react";
 function Notes() {
   const [note, setNote] = useState([]);
+  const {user}=useContext(AuthContext);
   useEffect(() => {
     async function notefetch() {
       try {
         const fetchnote = await fetch(
-          "http://localhost:3000/notes/savednotes/686aa0481e75e0800b1ca8c8",
+          `http://localhost:3000/notes/mynotes`,
           {
             method: "GET",
-            headers: {
-              "auth-token":
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJnYXV0YW0iLCJlbWFpbCI6ImdhdXRhbUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImdhdXRhbTEyMyIsIl9pZCI6IjY4Njk2MmE1M2JmMGU5Zjg0MjgwYjlmMiIsImRhdGUiOiIyMDI1LTA3LTA1VDE3OjM2OjM3LjQ3NFoiLCJfX3YiOjB9LCJpYXQiOjE3NTE3MzY5OTd9.iDDNv1Uvr5DP9OPVBSemm5ZXpnwDs9HZc3DMf948yQE",
-            },
+            credentials: "include",
+            headers:{
+              "Content-Type":"application/json"
+            }
           }
         );
         let response = await fetchnote.json();
