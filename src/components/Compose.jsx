@@ -1,5 +1,5 @@
-
 import React from "react";
+import { h1style } from "../handlers/composehandlers";
 import {
   Bold,
   Italic,
@@ -31,7 +31,21 @@ const icons = [
   { Icon: Redo, label: "Redo" },
 ];
 import { useState } from "react";
+
 export default function Compose() {
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [tag, setTag] = useState("general");
+  const uploadnote=async ()=>{
+    fetch(`http://localhost:3000/notes/addnote`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title:document.getElementById("noteTitle").value, description: document.getElementById("note").value, tag:"general" }) // replace with actual data
+    }).then((res) => res.json()).then((data) => console.log(data))
+  }
   const [Words, setWords] = useState("");
   let wordLength = Words.trim() === "" ? 0 : Words.trim().split(/\s+/).length;
   return (
@@ -43,6 +57,7 @@ export default function Compose() {
               {icons.map(({ Icon, label }, i) => (
                 <button
                   key={i}
+                  id={label.split(' ').join('-')} onClick={()=>{h1style(label)}}
                   title={label}
                   className="p-2 rounded-lg hover:bg-blue-100 transition-transform duration-150 active:scale-95"
                 >
@@ -52,8 +67,9 @@ export default function Compose() {
             </div>
           </div>
         </div>
-        <div className="h-[calc(100%-6.5rem)] w-full ">
+        <div className="h-[calc(100%-6.5rem)] w-full">
           <div className="w-full h-full border-[1px] border-t-0 border-b-0 border-blue-700">
+            <input type="text" id="noteTitle" placeholder="Title..." className="bg-red h-[2.5rem] w-full z-900 text-2xl pl-2 outline-0"/>
             <textarea
               type="text"
               id="note"
@@ -61,9 +77,8 @@ export default function Compose() {
               value={Words}
               onChange={(e) => setWords(e.target.value)}
               placeholder="Write something here..."
-              className="resize-none h-full bg-white w-full px-2 outline-0 caret- text-black"
+              className="resize-none h-full bg-white w-full px-4 pt-2 outline-0 caret- text-black"
             ></textarea>
-            {/* {Words.trim()===''?console.log("Text area is empty"):console.log(Words)} */}
           </div>
         </div>
         <div className="w-full h-[3rem] sticky bottom-0 left-0 shadow-black  border border-blue-600 text-[.8rem]" style={{boxShadow:'-3px 0 2px 3px rgba(0,0,0,.2)'}}>
@@ -87,6 +102,9 @@ export default function Compose() {
               average word length
             </div>
           </div>
+        </div>
+        <div>
+          <button onClick={uploadnote} className="absolute bottom-[3rem] right-5 bg-gradient-to-r from-blue-600 to-green-500 shadow-[0_2px_rgba(0,0,0,1)] hover:bg-blue-900 active:bg-blue-900  text-white py-2 px-4 rounded-2xl z-[999999] border-2 border-purple-600 hover:scale-105 active:scale-95">Save</button>
         </div>
       </div>
     </>

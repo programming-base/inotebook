@@ -1,7 +1,27 @@
-import React from "react";
-import { NotebookPen,EyeOff,FileLock2 } from "lucide-react";
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NotebookPen, EyeOff, FileLock2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { fetchMyNotes } from "./fetches/MynoteFetch";
+import { BsThreeDots } from "react-icons/bs";
 export default function Sider() {
+  const [notes, setNotes] = useState([]);
+  useEffect(() => {
+      const getNotes = async () => {
+        try {
+          const res = await fetchMyNotes();
+          console.log("Fetched data:", res); // Check what’s actually coming back
+         setNotes(await res);
+          console.log("Notes state updated:", await notes); // Check the state after setting it
+        } catch (err) {
+          console.error("Error fetching notes:", err);
+        }
+      };
+      getNotes();
+    }, []);
+  // console.log(Notes);
+  useEffect(() => {
+  console.log("Notes state updated:", notes);
+}, [notes]);
   return (
     <>
       <div
@@ -10,22 +30,25 @@ export default function Sider() {
       >
         <div className="w-[100%] h-[100%]">
           <div className="flex flex-col">
-            {/* <h1 className="text-3xl font-extrabold ml-2 text-gray-500 ">
-              Notes
-            </h1> */}
             <div className="flex flex-col">
-              <Link to='/newnote'><button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
-                <NotebookPen className="inline mr-2"/>
-                Compose Note
-              </button></Link>
-              <Link to='/privatenote'><button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
-                <EyeOff className="inline mr-2"/>
-                Private Notes
-              </button></Link>
-              <Link to='/notesecurity'><button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
-                <FileLock2 className="inline mr-2"/>
-                Secure Note
-              </button></Link>
+              <Link to="/newnote">
+                <button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
+                  <NotebookPen className="inline mr-2" />
+                  Compose Note
+                </button>
+              </Link>
+              <Link to="/privatenote">
+                <button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
+                  <EyeOff className="inline mr-2" />
+                  Private Notes
+                </button>
+              </Link>
+              <Link to="/notesecurity">
+                <button className="text-start rounded-xl hover:scale-105 hover:bg-gray-200 hover:text-black ml-2 w-[90%] p-2  h-10 text-[.75rem] text-gray-500 font-semibold transition-all duration-300">
+                  <FileLock2 className="inline mr-2" />
+                  Secure Note
+                </button>
+              </Link>
             </div>
           </div>
           <div className="flex flex-col">
@@ -33,8 +56,13 @@ export default function Sider() {
               <h1 className="text-xl font-semibold text-gray-400">Notes</h1>
             </div>
             <div className="ml-2 flex flex-col pr-4">
-              <div className="pt-1 pb-1">Notesw area</div>
-              <div className="pt-1 pb-1">Notes area</div>
+              {notes.map((note, index) => {
+                return(
+                <div key={index} className="p-2 border-b border-gray-200 flex items-center text-start hover:bg-gray-400">
+                  <p className=" text-black ">{note.title} </p><BsThreeDots/>
+                </div>
+                )
+              })}
             </div>
           </div>
         </div>

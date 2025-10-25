@@ -1,12 +1,13 @@
 import React from "react";
 import { Trash2, LockKeyhole, SquarePen, Star } from "lucide-react";
-import { useContext } from "react";
-import { AuthContext } from "../contexts/authContext";
+// import { useContext } from "react";
+// import { AuthContext } from "../contexts/authContext";
 import { useState } from "react";
 import { useEffect } from "react";
-function Notes() {
-  const [note, setNote] = useState([]);
-  const {user}=useContext(AuthContext);
+function Note() {
+  const [notes, setNote] = useState([]);
+  // const {user}=null;
+
   useEffect(() => {
     async function notefetch() {
       try {
@@ -21,32 +22,32 @@ function Notes() {
           }
         );
         let response = await fetchnote.json();
-        setNote([response]);
-        console.log(note);
+        console.log(response);
+        setNote(response);
       } catch (error) {
         console.log(error);
       }
     }
     notefetch();
   },[]);
-  if (note.length > 0) {
+  if (notes.length > 0) {
     return (
       <main className="w-full h-full">
         <div className="flex flex-col items-center mt-1 ml-2 border-l-2 border-green-600 text-black">
-          {note.map((data, index) => (
+          {notes.map((note, index) => (
             <div
               key={index}
               className={`flex justify-between items-center bg-gray-50 p-3 w-full border border-l-0 border-t-0 border-gray-600 ${
                 index === 0 ? "border-t-[.5px] border-black" : ""
               }`}
             >
+              {console.log(index)}
               <div className="w-full md:w-[85%] text-start">
                 <h1 className="text-gray-800 font-semibold break-words">
-                  {data.title}
+                  {note.title}
                 </h1>
                 <p className="ml-2  p-1 break-words whitespace-normal text-sm text-gray-700">
-                  {data.description}
-                  {/* {console.log(data[index])} */}
+                  {note.description}
                 </p>
               </div>
               <div className="p-2 mr-3">
@@ -78,4 +79,4 @@ function Notes() {
 }
 }
 
-export default Notes;
+export default Note;
