@@ -14,3 +14,20 @@ button{
   left:25vw;
   width: calc(100vw - 25vw);
 } */
+
+/* quill editor design */
+.ql-toolbar.ql-snow {
+  position: absolute;
+  top: 10px;
+  width: calc(100% - 2rem);
+  display: flex;
+  justify-content: space-between;
+}
+.ql-container {
+  margin-top:2rem !important;
+  /* padding-top: calc(5rem - 10px); */
+}
+.ql-picker-item{
+  padding-left:2px;
+  padding-right:2px;
+}

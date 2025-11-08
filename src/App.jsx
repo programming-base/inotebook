@@ -4,7 +4,7 @@ import React from "react";
 import { RouterProvider } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/authContext";
-import router from "./routes/router";
+import router from "./routes/Router";
 import animationData from "./assets/Insider-loading.json";
 function App() {
   const { loading, status } = useContext(AuthContext);
