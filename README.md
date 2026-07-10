@@ -54,7 +54,7 @@ The backend (built with Express, MongoDB, Passport.js and Sessions) is maintaine
 ```text
 src
 │
-├── assets/                # Images & animations
+├── assets/            
 ├── components/
 │   ├── Compose.jsx
 │   ├── LoginSignup.jsx
@@ -126,8 +126,6 @@ The authentication status is stored globally using **React Context**, allowing c
 * Home
 * Compose Note
 * My Notes
-* Private Notes *(Work in Progress)*
-* Secure Notes *(Conceptual / Work in Progress)*
 
 ---
 
@@ -332,17 +330,6 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 GITHUB_CLIENT_ID=your_github_client_id
 GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
-
-## 🚧 To-Do & Future Improvements
-
-This project is a work in progress. Key areas for future development include:
-
-- [ ] **Dynamic Data Fetching**: Remove hardcoded user IDs and JWTs in `PrivateNotes.jsx` and `SecureNotes.jsx`. All data should be fetched based on the authenticated user's context.
-- [ ] **Implement Full CRUD**: Wire up the UI buttons to fully implement Create, Read, Update, and Delete functionality for all note types.
-- [ ] **Complete Login/Signup Form**: Implement the backend logic for the manual email/password login and signup form.
-- [ ] **Enhanced Error Handling**: Implement global error handling and display user-friendly feedback for API failures.
-- [ ] **Note Security Feature**: Develop the "Secure Note" feature, potentially with client-side or end-to-end encryption.
-- [ ] **Add Tests**: Write unit and integration tests for both the frontend components and backend API endpoints.
 
 ## 📄 License
 

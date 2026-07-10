@@ -75,7 +75,7 @@ export default function Compose() {
     // The 'content' state now holds the sanitized HTML content from the editor
   try{
     const tag="General";
-    fetch("http://localhost:3000/notes/addnote",{
+    fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3000"}/notes/addnote`,{
       method:"POST",
       credentials:"include",
       headers:{
