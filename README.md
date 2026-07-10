@@ -54,7 +54,7 @@ The backend (built with Express, MongoDB, Passport.js and Sessions) is maintaine
 ```text
 src
 │
-├── assets/            
+├── assets/          
 ├── components/
 │   ├── Compose.jsx
 │   ├── LoginSignup.jsx
@@ -168,7 +168,7 @@ This project requires the backend server to be running.
 Backend Repository:
 
 ```
-<Add Backend Repository Link Here>
+https://github.com/programming-base/iNotebook-backend.git
 ```
 
 ---
@@ -191,8 +191,6 @@ This project helped me understand:
 ---
 
 ## 🚧 Current Limitations
-
-This project is still under development.
 
 Current limitations include:
 
@@ -220,13 +218,6 @@ Current limitations include:
 ---
 
 ## 📸 Screenshots
-
-> Add screenshots of:
->
-> * Login Page
-> * Home Page
-> * Compose Note
-> * Notes Dashboard
 
 ---
 
