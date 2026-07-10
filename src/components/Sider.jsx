@@ -19,17 +19,45 @@ async function handleClick(noteId) {
 export default function Sider() {
   const [Index, setIndex] = useState(0);
   const [notes, setNotes] = useState([]);
-  useEffect(() => {
-      const getNotes = async () => {
-        try {
-          const res = await fetchMyNotes();
-          console.log("Fetched data:", res); // Check what’s actually coming back
-         setNotes(await res);
-          console.log("Notes state updated:",notes); // Check the state after setting it
-        } catch (err) {
-          console.error("Error fetching notes:", err);
+  const [openMenuIndex, setOpenMenuIndex] = useState(null);
+
+  const getNotes = async () => {
+    try {
+      const res = await fetchMyNotes();
+      console.log("Fetched data:", res);
+      setNotes(res);
+      console.log("Notes state updated:", notes);
+    } catch (err) {
+      console.error("Error fetching notes:", err);
+    }
+  };
+
+  const handleDelete = async (noteId) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/notes/deletenote/${noteId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      };
+      );
+
+      if (!response.ok) {
+        console.log("Note was not deleted");
+        return;
+      }
+
+      setNotes((currentNotes) => currentNotes.filter((note) => note._id !== noteId));
+      setOpenMenuIndex(null);
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    }
+  };
+
+  useEffect(() => {
       getNotes();
     }, []);
   // console.log(Notes);
@@ -55,6 +83,18 @@ useEffect(() => {
   }
 }
 },[location.pathname,notes,Index]);
+
+  useEffect(() => {
+    const closeMenu = () => setOpenMenuIndex(null);
+    window.addEventListener("click", closeMenu);
+    window.addEventListener("notes-updated", getNotes);
+
+    return () => {
+      window.removeEventListener("click", closeMenu);
+      window.removeEventListener("notes-updated", getNotes);
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -79,9 +119,40 @@ useEffect(() => {
             <div className="ml-2 flex !h-[70%] flex-col overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 pr-4">
               {notes && notes?.map((note, index) => {
                 return(
-                <Link key={index} to={`/note/${note._id}`}><div key={index} onClick={()=>{handleClick(notes[index]._id); setIndex(index)}} className="p-2 border-b border-gray-200 flex justify-between items-center text-start hover:bg-gray-50">
-                  <p className=" text-black ">{note.title} </p><button type="button" className="p-1 h-full w-fit rounded-[20000000px] hover:bg-gray-300"><BsThreeDots/></button>
-                </div>{console.log(note.title)}
+                <Link key={index} to={`/note/${note._id}`}>
+                  <div onClick={()=>{handleClick(notes[index]._id); setIndex(index)}} className="relative p-2 border-b border-gray-200 flex justify-between items-center text-start hover:bg-gray-50">
+                    <p className=" text-black ">{note.title} </p>
+                    <button
+                      type="button"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        setOpenMenuIndex(openMenuIndex === index ? null : index);
+                      }}
+                      className="p-1 h-full w-fit rounded-[20000px] hover:bg-gray-300"
+                    >
+                      <BsThreeDots />
+                    </button>
+
+                    {openMenuIndex === index && (
+                      <div
+                        className="absolute right-2 top-10 z-50 w-36 rounded-lg border border-gray-200 bg-white shadow-lg"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        <button
+                          type="button"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            handleDelete(note._id);
+                          }}
+                          className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>{console.log(note.title)}
                 </Link>
                 )
               })}

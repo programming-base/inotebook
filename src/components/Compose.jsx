@@ -63,7 +63,7 @@ export default function Compose() {
     "image",
   ];
 
-  const saveNote = () => {
+  const saveNote = async () => {
     if(!content) return;
     const editor = document.getElementById("editor").children[1];
     const titleELement = document.getElementById("title-input");
@@ -75,7 +75,7 @@ export default function Compose() {
     // The 'content' state now holds the sanitized HTML content from the editor
   try{
     const tag="General";
-    fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3000"}/notes/addnote`,{
+    const response = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3000"}/notes/addnote`,{
       method:"POST",
       credentials:"include",
       headers:{
@@ -83,6 +83,11 @@ export default function Compose() {
       },
       body:JSON.stringify({title,description,tag})
     });
+    if (response.ok) {
+      window.dispatchEvent(new Event("notes-updated"));
+      setContent("");
+      titleELement.value = "";
+    }
   }catch(err){
     console.error("Error saving note:", err);
   }
