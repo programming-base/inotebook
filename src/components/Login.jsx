@@ -20,7 +20,7 @@ export default function Login() {
           <h1 className="mt-10 text-2xl">Welcome back,👋</h1>
           
           <div className=" w-[80%] h-fit contain-content">
-            <button onClick={()=>{window.location.href=`${import.meta.env.VITE_API_URL||'http://localhost:3000'}/auth/login` }} className="w-full  flex justify-center items-center bg-white mt-4 h-[3rem] border  border-gray-400 rounded-[8px] active:scale-95 transition-all duration-300">
+            <button onClick={()=>{window.location.href=`${import.meta.env.VITE_API_URL || "http://localhost:3000"}/auth/login` }} className="w-full  flex justify-center items-center bg-white mt-4 h-[3rem] border  border-gray-400 rounded-[8px] active:scale-95 transition-all duration-300">
               <span className="flex">
                 <FcGoogle size={24} className="mx-2" />
                 Google

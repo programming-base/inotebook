@@ -1,5 +1,5 @@
 export const fetchPrivateNotes = async () => {
-  const response = await fetch("http://localhost:3000/notes/mynotes", {
+  const response = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3000"}/notes/mynotes`, {
     method: "GET",
     credentials: "include",
     headers: {

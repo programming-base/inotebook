@@ -6,7 +6,7 @@ export default function AuthProvider({ children }) {
   const [user,setUser]=useState(null)
   const [loading, setLoading] = useState(true); 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL||"http://localhost:3000/"}`, {
+    fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3000"}/`, {
       method: "GET",
       credentials: "include", 
       headers: {

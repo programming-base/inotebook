@@ -6,7 +6,7 @@ import { BsThreeDots } from "react-icons/bs";
 
 
 async function handleClick(noteId) {
-  const Note=await fetch(`http://localhost:3000/notes/getnote/${noteId}`, {
+  const Note=await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3000"}/notes/getnote/${noteId}`, {
     method:"GET",
     credentials:"include",
     headers: {
