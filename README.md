@@ -219,6 +219,14 @@ Current limitations include:
 
 ## 📸 Screenshots
 
+![Login](./image/README/login.png)
+
+![Home](./image/README/home.png)
+
+![Logged In](./image/README/home-loggedin.png)
+
+![Notepad](./image/README/notepad.png)
+
 ---
 
 ## 👨‍💻 Author
